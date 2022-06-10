@@ -27,3 +27,11 @@ Many services needs to be builds (Rabbit, Php, Nginx) with `docker-compose build
 #### 3. Start services
 `docker-compose up -d` \
 `-d` is an option for launch services as deamon
+
+
+#### 4. Connect to services 
+
+| Services | Url                       | Authentication |
+|----------|---------------------------|----------------|
+| Traefik  | traefiK.alita.localhost   |                |
+| Rabbitmq | rabbitmq.alita.localhost  | guest / guest  |

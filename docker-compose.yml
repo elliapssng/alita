@@ -4,10 +4,10 @@ services:
             file: ./docker/traefik/docker-compose.yml
             service: alita-proxy
 
-#    alita-rabbit:
-#        extends:
-#            file: ./docker/rabbit/docker-compose.yml
-#            service: alita-rabbit
+    alita-rabbit:
+        extends:
+            file: ./docker/rabbit/docker-compose.yml
+            service: alita-rabbit
 
 #    redis:
 #        extends:

@@ -1,0 +1,31 @@
+services:
+    alita-proxy:
+        extends:
+            file: ./docker/traefik/docker-compose.yml
+            service: alita-proxy
+
+#    alita-rabbit:
+#        extends:
+#            file: ./docker/rabbit/docker-compose.yml
+#            service: alita-rabbit
+
+#    redis:
+#        extends:
+#            file: ./docker/redis/docker-compose.yml
+#            service: alita-redis
+
+#    pg:
+#        extends:
+#            file: ./docker/database/docker-compose.yml
+#            service: alita-pg
+
+#    alita-mailcatcher:
+#        extends:
+#            file: ./docker/mailcatcher/docker-compose.yml
+#            service: alita-mailcatcher
+
+networks:
+    shared_alita:
+        external: false
+    proxy_network_alita:
+        external: true

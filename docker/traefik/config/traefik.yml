@@ -1,0 +1,30 @@
+---
+entrypoints:
+  web_alita:
+    address: ":80"
+    forwardedHeaders:
+      insecure: true
+  websecure_alita:
+    address: ":443"
+    forwardedHeaders:
+      insecure: true
+
+api:
+  dashboard: true
+  debug: true
+  insecure: false
+
+serversTransport:
+  insecureSkipVerify: true
+
+providers:
+  docker:
+    network: "proxy_network_alita"
+    exposedByDefault: false
+    swarmMode: false
+    watch: true
+    constraints: "LabelRegex(`Project`, `alita\\..*`)"
+
+  file:
+    directory: /etc/traefik/dynamic/
+    watch: true

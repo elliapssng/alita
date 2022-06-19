@@ -7,7 +7,7 @@ For install docker : https://docs.docker.com/engine/install/ubuntu/ \
 For install docker-compose : https://docs.docker.com/compose/install/
 
 ### Deploy docker stack
-#### 1. You must be create `network` \
+#### 1. You must be create `network` 
 `docker network create proxy_network_alita && docker network create shared_alita` permish to all services to communicate together inside and behind of docker. \
 For example, if you have database in your computer and other services, you can disabled services and use them with this parameters :
 ```yaml
@@ -31,8 +31,10 @@ Many services needs to be builds (Rabbit, Php, Nginx) with `docker-compose build
 
 #### 4. Connect to services 
 
-| Services    | Url                      | Authentication |
-|-------------|--------------------------|----------------|
-| Traefik     | traefiK.alita.localhost  |                |
-| Rabbitmq    | rabbitmq.alita.localhost | guest / guest  |
-| mailcatcher | mail.alita.localhost     |                |
+| Services    | Url                        | Authentication |
+|-------------|----------------------------|----------------|
+| Traefik     | traefiK.alita.localhost    |                |
+| Rabbitmq    | rabbitmq.alita.localhost   | guest / guest  |
+| mailcatcher | mail.alita.localhost       |                |
+| database    | localhost (for visualizer) | alita / pass   |
+

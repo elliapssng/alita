@@ -1,0 +1,24 @@
+---
+version: "2"
+services:
+    alita-pg:
+        image: postgres:${POSTGRES_VERSION:-13}-alpine
+        restart: always
+        networks:
+            - shared_alita
+        ports:
+            - 5432:5432
+        environment:
+            - "POSTGRES_USER=${POSTGRES_USER:-alita}"
+            - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-pass}"
+            - "PGDATA=/var/lib/postgresql/data/data"
+        user: "${USER_UID:-1001}:${USER_GUID:-1001}"
+        volumes:
+            - "./data/postgres:/var/lib/postgresql/data"
+            - "./data/dumps:/dumps"
+            - "/etc/passwd:/etc/passwd:ro"
+        logging:
+            driver: "json-file"
+            options:
+                max-size: '100k'
+                max-file: '20'

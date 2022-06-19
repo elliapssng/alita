@@ -55,4 +55,5 @@
 .idea
 
 # Add directory docker
+docker/database/data/
 docker/traefik/config/certs

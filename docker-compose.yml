@@ -19,10 +19,10 @@ services:
 #            file: ./docker/database/docker-compose.yml
 #            service: alita-pg
 
-#    alita-mailcatcher:
-#        extends:
-#            file: ./docker/mailcatcher/docker-compose.yml
-#            service: alita-mailcatcher
+    alita-mailcatcher:
+        extends:
+            file: ./docker/mailcatcher/docker-compose.yml
+            service: alita-mailcatcher
 
 networks:
     shared_alita:

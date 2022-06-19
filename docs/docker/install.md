@@ -31,7 +31,8 @@ Many services needs to be builds (Rabbit, Php, Nginx) with `docker-compose build
 
 #### 4. Connect to services 
 
-| Services | Url                       | Authentication |
-|----------|---------------------------|----------------|
-| Traefik  | traefiK.alita.localhost   |                |
-| Rabbitmq | rabbitmq.alita.localhost  | guest / guest  |
+| Services    | Url                      | Authentication |
+|-------------|--------------------------|----------------|
+| Traefik     | traefiK.alita.localhost  |                |
+| Rabbitmq    | rabbitmq.alita.localhost | guest / guest  |
+| mailcatcher | mail.alita.localhost     |                |

@@ -9,10 +9,10 @@ services:
             file: ./docker/rabbit/docker-compose.yml
             service: alita-rabbit
 
-#    redis:
-#        extends:
-#            file: ./docker/redis/docker-compose.yml
-#            service: alita-redis
+    alita-redis:
+        extends:
+            file: ./docker/redis/docker-compose.yml
+            service: alita-redis
 
     alita-pg:
         extends:

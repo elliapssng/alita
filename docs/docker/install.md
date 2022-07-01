@@ -37,4 +37,5 @@ Many services needs to be builds (Rabbit, Php, Nginx) with `docker-compose build
 | Rabbitmq    | rabbitmq.alita.localhost   | guest / guest  |
 | mailcatcher | mail.alita.localhost       |                |
 | database    | localhost (for visualizer) | alita / pass   |
+| redis       | localhost (for visualizer) |                |
 

@@ -24,6 +24,11 @@ services:
             file: ./docker/mailcatcher/docker-compose.yml
             service: alita-mailcatcher
 
+    alita-php:
+        extends:
+            file: ./docker/php/docker-compose.yml
+            service: alita-php
+
 networks:
     shared_alita:
         external: false

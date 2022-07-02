@@ -1,0 +1,27 @@
+services:
+    alita-php:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+            args:
+                PHP_VERSION: ${PHP_VERSION:-8.1}
+                ALPINE_VERSION: ${ALPINE_VERSION:-3.16}
+        restart: always
+        networks:
+            - shared_alita
+            - proxy_network_alita
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        env_file:
+            - ../../.env.docker
+        volumes:
+            - ${HOME}/.composer:/.composer
+            - /etc/localtime:/etc/localtime:ro
+            - ./:/srv/alita:rw,cached
+        labels:
+            - "traefik.enable=false"
+        logging:
+            driver: "json-file"
+            options:
+                max-size: '100k'
+                max-file: '20'

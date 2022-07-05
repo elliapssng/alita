@@ -29,6 +29,11 @@ services:
             file: ./docker/php/docker-compose.yml
             service: alita-php
 
+    alita-nginx:
+        extends:
+            file: ./docker/nginx/docker-compose.yml
+            service: alita-nginx
+
 networks:
     shared_alita:
         external: false

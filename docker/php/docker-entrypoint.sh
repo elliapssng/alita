@@ -5,10 +5,6 @@ if [ "${1#-}" != "$1" ]; then
     set -- php-fpm "$@"
 fi
 
-echo "*********** Set TIMEZONE -> Paris *******************"
-rm -rf /etc/localtime
-ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
-
 if [ "$INSTALL" = true ]; then
     echo "*********** INSTALL = true *******************"
     echo "*********** COMPOSER *******************"

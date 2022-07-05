@@ -15,20 +15,23 @@ RUN apk add zsh \
     curl \
     wget \
     git \
-    htop
+    htop \
+    composer \
+    vim
 
-RUN ln -s /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini \
-    && rm /usr/local/etc/php-fpm.d/*.conf
-
-COPY www.conf /usr/local/etc/php-fpm.d/
+COPY ./conf/www.conf /usr/local/etc/php-fpm.d/
 
 RUN sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 RUN /bin/zsh
 
 ADD ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
-
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
+
+RUN mv /etc/php8/php.ini /etc/php8/php.ini.bak
+ADD ./conf/php.ini /etc/php8/php.ini
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 EXPOSE 9000
 

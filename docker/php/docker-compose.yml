@@ -14,7 +14,7 @@ services:
         volumes:
             - ${HOME}/.composer:/.composer
             - /etc/localtime:/etc/localtime:ro
-            - ./:/srv/alita:rw,cached
+            - ../../:/srv/alita:rw,cached
         labels:
             - "traefik.enable=false"
         logging:

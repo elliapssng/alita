@@ -54,3 +54,7 @@ RUN git config --global user.name "Ellia Passinge"
 COPY . /srv/alita
 
 WORKDIR /srv/alita
+
+EXPOSE 9000
+
+CMD ["php-fpm"]

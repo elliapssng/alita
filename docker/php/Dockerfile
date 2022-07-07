@@ -1,5 +1,7 @@
-FROM php:8.1-fpm
+ARG PHP_VERSION
 
+FROM php:$PHP_VERSION-fpm
+ARG BASE_VERSION=8.1
 RUN echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list
 RUN apt-get update -y && apt-get upgrade -y
 
@@ -17,14 +19,14 @@ RUN apt-get install -y \
     software-properties-common \
     lsb-release
 
-RUN echo "**** Configuration PHP ****"
+RUN echo "**** Configuration PHP $BASE_VERSION****"
 RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install -y \
-    php8.1-pgsql/bullseye \
+    php$BASE_VERSION-pgsql/bullseye \
     libxslt1-dev \
-    php8.1-xml/bullseye \
-    php8.1-xsl/bullseye
+    php$BASE_VERSION-xml/bullseye \
+    php$BASE_VERSION-xsl/bullseye
 
 RUN echo "**** Installation Composer ****"
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -48,7 +50,7 @@ ADD ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
 
-RUN git config --global user.email "ellia.passinge@eliberty.fr"
+RUN git config --global user.email "ellia.passinge@gmail.com"
 RUN git config --global user.name "Ellia Passinge"
 
 COPY . /srv/alita

@@ -22,7 +22,8 @@ services:
 ```
 
 #### 2. You need to build services
-Many services needs to be builds (Rabbit, Php, Nginx) with `docker-compose build`
+Many services needs to be builds (Rabbit, Php, Nginx) with `docker-compose build` \
+You need to copy `.env.docker.dist` to `.env` before.
 
 #### 3. Start services
 `docker-compose up -d` \
@@ -38,4 +39,3 @@ Many services needs to be builds (Rabbit, Php, Nginx) with `docker-compose build
 | mailcatcher | mail.alita.localhost       |                |
 | database    | localhost (for visualizer) | alita / pass   |
 | redis       | localhost (for visualizer) |                |
-

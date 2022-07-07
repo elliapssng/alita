@@ -1,8 +1,11 @@
 ---
 version: "2"
+
 services:
     alita-redis:
-        image: redis:6.2.6-alpine3.15
+        image: redis:${REDIS_VERSION?err}-alpine${REDIS_ALPINE_VERSION}
+        env_file:
+            - ../../.env
         restart: always
         networks:
             - shared_alita

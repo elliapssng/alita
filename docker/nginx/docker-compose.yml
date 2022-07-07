@@ -6,7 +6,11 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+            args:
+                NGINX_VERSION: ${NGINX_VERSION?err}
         restart: on-failure
+        env_file:
+            - ../../.env
         networks:
             - shared_alita
             - proxy_network_alita

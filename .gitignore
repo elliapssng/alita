@@ -59,4 +59,4 @@ docker/database/data/
 docker/traefik/config/certs
 
 # env file
-.env.docker
+.env

@@ -1,8 +1,11 @@
 ---
 version: "2"
+
 services:
     alita-pg:
-        image: postgres:${POSTGRES_VERSION:-13}-alpine
+        image: postgres:${POSTGRES_VERSION?err}-alpine
+        env_file:
+            - ../../.env
         restart: always
         networks:
             - shared_alita

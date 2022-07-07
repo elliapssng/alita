@@ -1,8 +1,11 @@
 ---
 version: "2"
+
 services:
     alita-proxy:
-        image: traefik:2.6.1
+        image: traefik:${TRAEFIK_VERSION:?err}
+        env_file:
+            - ../../.env
         restart: always
         networks:
             - shared_alita

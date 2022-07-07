@@ -1,8 +1,13 @@
+---
+version: "2"
+
 services:
     alita-php:
         build:
             context: .
             dockerfile: ./Dockerfile
+            args:
+                PHP_VERSION: ${PHP_VERSION:?err}
         restart: always
         networks:
             - shared_alita
@@ -10,7 +15,7 @@ services:
         extra_hosts:
             - "host.docker.internal:host-gateway"
         env_file:
-            - ../../.env.docker
+            - ../../.env
         volumes:
             - ${HOME}/.composer:/.composer
             - /etc/localtime:/etc/localtime:ro

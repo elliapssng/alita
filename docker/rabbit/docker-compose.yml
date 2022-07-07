@@ -1,9 +1,16 @@
+---
+version: "2"
+
 services:
     alita-rabbit:
         build:
             context: .
             dockerfile: ./Dockerfile
+            args:
+                RABBITMQ_VERSION: ${RABBITMQ_VERSION:?err}
         restart: always
+        env_file:
+            -   ../../.env
         networks:
             - shared_alita
             - proxy_network_alita

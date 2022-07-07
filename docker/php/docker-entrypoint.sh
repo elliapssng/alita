@@ -31,14 +31,4 @@ else
     echo "*********** INSTALL = false *******************"
 fi
 
-if [ "$XDEBUG_ENABLED" = true ]; then
-    echo "*********** XDEBUG ENABLED *******************"
-    cp ./docker/php/conf/php.dev.xdebug.ini "${PHP_INI_DIR}"/conf.d/zz-custom-dev-xdebug-eliberty-php.ini
-    echo "zend_extension=xdebug" > "${PHP_INI_DIR}"/conf.d/docker-php-ext-xdebug.ini
-else
-    echo "*********** XDEBUG DISABLED *******************"
-    rm -f "${PHP_INI_DIR}"/conf.d/zz-custom-dev-xdebug-eliberty-php.ini
-    rm -f "${PHP_INI_DIR}"/conf.d/docker-php-ext-xdebug.ini
-fi
-
 exec "$@"

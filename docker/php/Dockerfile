@@ -1,40 +1,56 @@
-ARG PHP_VERSION
-ARG ALPINE_VERSION
+FROM php:8.1-fpm
 
-FROM php:${PHP_VERSION}-fpm-alpine${ALPINE_VERSION}
+RUN echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list
+RUN apt-get update -y && apt-get upgrade -y
 
-COPY --from=mlocati/php-extension-installer:1.4.17 /usr/bin/install-php-extensions /usr/bin/
-
-RUN install-php-extensions \
-    bcmath \
-    gd \
-    intl \
-    pdo_pgsql
-
-RUN apk add zsh \
-    curl \
-    wget \
+RUN echo "**** Installation package initiaux ****"
+RUN apt-get install -y \
+    curl\
+    gnupg\
+    vim \
     git \
-    htop \
-    composer \
-    vim
+    wget \
+    zip \
+    symfony-cli \
+    ca-certificates \
+    apt-transport-https \
+    software-properties-common \
+    lsb-release
 
-COPY ./conf/www.conf /usr/local/etc/php-fpm.d/
+RUN echo "**** Configuration PHP ****"
+RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install -y \
+    php8.1-pgsql/bullseye \
+    libxslt1-dev \
+    php8.1-xml/bullseye \
+    php8.1-xsl/bullseye
 
-RUN sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-RUN /bin/zsh
+RUN echo "**** Installation Composer ****"
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN mv composer.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/composer
+
+RUN echo "**** Installation NodeJS ****"
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install -y nodejs
+
+RUN echo "**** Installation YARN ****"
+RUN apt-get install -y yarn
+
+RUN echo "**** Installation ZSH ****"
+RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+RUN chsh -s /bin/zsh
 
 ADD ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
 
-RUN mv /etc/php8/php.ini /etc/php8/php.ini.bak
-ADD ./conf/php.ini /etc/php8/php.ini
+RUN git config --global user.email "ellia.passinge@eliberty.fr"
+RUN git config --global user.name "Ellia Passinge"
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
+COPY . /srv/alita
 
-EXPOSE 9000
-
-WORKDIR /srv/alita/
-
-CMD ["php-fpm"]
+WORKDIR /srv/alita

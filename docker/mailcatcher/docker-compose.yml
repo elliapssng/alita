@@ -1,3 +1,6 @@
+---
+version: "2"
+
 services:
     alita-mailcatcher:
         image: stpaquet/alpinemailcatcher

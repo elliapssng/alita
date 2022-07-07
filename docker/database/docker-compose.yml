@@ -1,5 +1,6 @@
 ---
 version: "2"
+
 services:
     alita-pg:
         image: postgres:${POSTGRES_VERSION:-13}-alpine

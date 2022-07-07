@@ -1,4 +1,6 @@
-FROM nginx:1.21.6
+ARG NGINX_VERSION
+
+FROM nginx:$NGINX_VERSION
 
 RUN apt-get update && apt-get upgrade -y
 

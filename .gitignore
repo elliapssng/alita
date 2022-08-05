@@ -50,3 +50,13 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+# Add directory for code editor
+.idea
+
+# Add directory docker
+docker/database/data/
+docker/traefik/config/certs
+
+# env file
+.env

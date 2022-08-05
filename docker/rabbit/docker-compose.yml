@@ -1,0 +1,32 @@
+---
+version: "2"
+
+services:
+    alita-rabbit:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+            args:
+                RABBITMQ_VERSION: ${RABBITMQ_VERSION:?err}
+        restart: always
+        env_file:
+            -   ../../.env
+        networks:
+            - shared_alita
+            - proxy_network_alita
+        ports:
+            - 15672:15672
+            - 5672:5672
+        labels:
+            - "traefik.enable=true"
+            - "traefik.docker.network=proxy_network_alita"
+            - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.alita.localhost`)"
+            - "traefik.http.routers.rabbitmq.tls=true"
+            - "traefik.http.routers.rabbitmq.entrypoints=websecure_alita"
+            - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
+            - "Project=alita.rabbit"
+        logging:
+            driver: "json-file"
+            options:
+                max-size: '100k'
+                max-file: '20'

@@ -25,6 +25,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.9",
+        "phpro/grumphp": "^1.13",
         "phpstan/phpstan": "^1.8",
         "phpstan/phpstan-doctrine": "^1.3",
         "phpstan/phpstan-phpunit": "^1.1",
@@ -34,7 +35,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "phpro/grumphp": true
         },
         "optimize-autoloader": true,
         "preferred-install": {

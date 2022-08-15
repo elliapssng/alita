@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec alita_alita-php_1 php /srv/alita/vendor/friendsofphp/php-cs-fixer/php-cs-fixer --config=/srv/alita/.php-cs-fixer.dist.php "$@"

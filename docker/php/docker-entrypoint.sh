@@ -9,13 +9,14 @@ if [ "$INSTALL" = true ]; then
     echo "*********** INSTALL = true *******************"
     echo "*********** COMPOSER *******************"
     composer install --prefer-dist --no-interaction --no-scripts
+    php vendor/phpro/grumphp/bin/grumphp git:init
     echo "*********** YARN && ENCORE *******************"
     yarn install
     yarn encore dev
-    echo "*********** CREATION DES DOSSIERS *******************"
+    echo "*********** CREATE DIRS *******************"
     mkdir -p /srv/alita/var
     mkdir -p /srv/alita/public/upload/pictures
-    echo "*********** MAPPAGE DE L'UTILISATEUR VERS WWW-DATA *******************"
+    echo "*********** MAPPING WWW-DATA *******************"
     ## Remapping generate folders to match user id when volume is mounted
     if [ "$(id -u www-data)" = "82" ]; then
         deluser --remove-home www-data &&\

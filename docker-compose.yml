@@ -17,10 +17,10 @@ services:
             file: ./docker/redis/docker-compose.yml
             service: alita-redis
 
-    alita-pg:
-        extends:
-            file: ./docker/database/docker-compose.yml
-            service: alita-pg
+#    alita-pg:
+#        extends:
+#            file: ./docker/database/docker-compose.yml
+#            service: alita-pg
 
     alita-mailcatcher:
         extends:
